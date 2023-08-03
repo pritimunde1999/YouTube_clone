@@ -80,7 +80,7 @@ main{
     
 }
 #sidebar{
-    border: 1px solid red;
+    
     margin-left: 0 !important;
     height: auto;
     box-shadow: 3px 3px 3px #303030;
@@ -138,7 +138,7 @@ strong{
 
 .searched-items{
     display: flex;
-    border: 1px solid red;
+    
     height: 50px;
     gap:20px;
     align-items: center;
@@ -169,7 +169,7 @@ strong{
     width:280px;
     background-color: black;
     cursor: pointer;
-    border: 1px solid red;
+    
 
 }
 #thumbnil{
