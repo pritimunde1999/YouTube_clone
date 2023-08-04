@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-let apiKey = "AIzaSyBV4jxxWaTT2GzW0kHrsxg77jsstUIX8EU";
+let apiKey = "AIzaSyBnH7VjlOvFrvK3iGxKzZ0xfCDaEOJ3tLI";
 let baseURL = "https://www.googleapis.com/youtube/v3";
 
 let menu = document.getElementsByClassName("menubar")[0];
