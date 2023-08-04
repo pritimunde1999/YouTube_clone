@@ -104,7 +104,7 @@ main{
     margin-bottom: 20px;
 }
 
-#title > p{
+#title > p, #head>p{
     font-size: 25px;
     font-weight: 200;
     margin-bottom: 10px;
@@ -124,7 +124,7 @@ main{
 
 #likes{
     display: flex;
-    gap:10px;
+    gap:20px;
     margin-right:20px ;
 }
 #content{
@@ -182,4 +182,88 @@ main{
     display: flex;
     gap:5px;
     color: lightgray;
+}
+
+#sort{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+#head{
+    display: flex;
+    align-items: center;
+    gap:40px;
+    margin-bottom: 20px;
+}
+
+#head>p{
+    font-size: 20px;
+}
+
+#yourComment, #replies{
+    display: flex;
+    gap:20px;
+    align-items: center;
+    
+   
+}
+
+#yourComment > p{
+    color: rgba(201, 198, 198, 0.926);
+    padding:5px;
+    width:100%;
+    border-bottom: 1px solid #80808079;
+
+}
+
+#name-time{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+
+#time1{
+    color: rgba(201, 198, 198, 0.926);
+    font-size:13px;
+}
+
+#reply{
+    cursor: pointer;
+}
+#comment-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap:10px;
+}
+
+#container-2{
+    margin-top: 30px;
+}
+#img1 >img{
+   
+   /* margin-top: 0;
+   padding-top: 0; */
+   width:35px;
+   height: 35px;
+   border-radius: 50%;
+   
+}
+.comment-card{
+    display: flex;
+    gap:20px;
+    
+    margin-bottom: 20px;
+}
+
+#div1{
+    display: flex;
+    gap:7px;
+}
+
+#containerReply{
+    margin-left: 40px;
+    font-size: 13px;
+    
 }

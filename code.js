@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-let apiKey = "AIzaSyB4H8Ifok75zK6w6zP0lIQv3bCycVksrzA   ";
+let apiKey = "AIzaSyBV4jxxWaTT2GzW0kHrsxg77jsstUIX8EU";
 let baseURL = "https://www.googleapis.com/youtube/v3";
 
 let menu = document.getElementsByClassName("menubar")[0];
@@ -59,7 +59,7 @@ async function getVideoInfo(id){
      let url =`${baseURL}/videos?key=${apiKey}&id=${id}&part=snippet,statistics`;
      let response = await fetch(url,{method:"GET"});
      let result = await response.json();
-     
+   
      return result;
 }
 
@@ -97,7 +97,7 @@ function dataOnUI(videoList){
          card.id = `${element.id.videoId}`;
          card.onclick = eval("sendData");
          const data = await getVideoInfo(element.id.videoId);
-         console.log(element.id.videoId);
+         //console.log(element.id.videoId);
          const views = data.items[0].statistics.viewCount;
          let viewC = nFormatter(views);
          
@@ -139,14 +139,13 @@ function sendData(){
     window.location.href = 'http://127.0.0.1:5500/video_screen.html';
 }
 
-// const cards = document.getElementsByClassName("card");
-// console.log(cards);
-// Array.from(cards).forEach(card => {
-//     card.addEventListener("click", function() {
-//       const cardID = this.id;
-//       console.log("Clicked card ID:", cardID);
-//     });
-//   });
+const cards = document.getElementsByClassName("card");
+
+Array.from(cards).forEach(card => {
+    card.addEventListener("click", function() {
+      const cardID = this.id;
+    });
+  });
 
 });
 
