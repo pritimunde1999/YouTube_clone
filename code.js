@@ -136,7 +136,7 @@ function sendData(){
     }
 
     localStorage.setItem('videoID', JSON.stringify(data));
-    window.location.href = 'http://127.0.0.1:5500/video_screen.html';
+    window.location.href = 'video_screen.html';
 }
 
 const cards = document.getElementsByClassName("card");
