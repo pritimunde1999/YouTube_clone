@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-let apiKey = "AIzaSyBnH7VjlOvFrvK3iGxKzZ0xfCDaEOJ3tLI";
+let apiKey = "AIzaSyB4H8Ifok75zK6w6zP0lIQv3bCycVksrzA";
 let baseURL = "https://www.googleapis.com/youtube/v3";
 
 let menu = document.getElementsByClassName("menubar")[0];
@@ -44,6 +44,7 @@ async function getRandomVideos(){
     let url =`${baseURL}/search?key=${apiKey}&part=snippet&maxResults=20`;
     let response = await fetch(url,{method:"GET"});
     let result = await response.json();
+    console.log(result);
     dataOnUI(result.items);
 }
 
@@ -67,7 +68,7 @@ async function getSearchResults(searchString){
    let url =`${baseURL}/search?key=${apiKey}&q=${searchString}&part=snippet&maxResults=20`;
    let response = await fetch(url,{method:"GET"});
    let result = await response.json();
-  // console.log(result);
+   console.log(result);
    dataOnUI(result.items);
    
 }
@@ -88,7 +89,7 @@ function nFormatter(num) {
 
 function dataOnUI(videoList){
        cardContainer.innerHTML="";
-       //console.log(videoList);
+       console.log(videoList);
        
        videoList.forEach(async element => {
 

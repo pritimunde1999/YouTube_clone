@@ -267,3 +267,26 @@ main{
     font-size: 13px;
     
 }
+
+#img-cont{
+    position: relative;
+}
+
+.fa-youtube{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 50px;
+    color: red;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#moreVideoTitle{
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}

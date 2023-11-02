@@ -1,6 +1,7 @@
-let apiKey = "AIzaSyBnH7VjlOvFrvK3iGxKzZ0xfCDaEOJ3tLI";
+let apiKey = "AIzaSyB4H8Ifok75zK6w6zP0lIQv3bCycVksrzA";
 let baseURL = "https://www.googleapis.com/youtube/v3";
 const videoId = JSON.parse(localStorage.getItem('videoID'));
+console.log("Video ID: ", videoId.videoId);
 
 async function fetchDetails(id){
     
@@ -38,6 +39,16 @@ async function getReplies(id)
    addRepliesToCard(result.items,id);
 }
 
+async function getMoreVideos(query)
+{
+    
+    let url = `${baseURL}/search?key=${apiKey}&q=${query}&part=snippet&maxResults=20`;
+    let response = await fetch(url, { method: 'GET' });
+    let result = await response.json();
+    console.log(result);
+    return result.items;
+}
+
 function nFormatter(num) {
     if (num >= 1000000000) {
        return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
@@ -67,13 +78,27 @@ async function getInfo(){
     const channelImg = channelInfo.items[0].snippet.thumbnails.high.url;
     const subscribers = nFormatter(channelInfo.items[0].statistics.subscriberCount);
 
+    let commentInfo = await getComments(videoId.videoId);
+   
+   
+   const arr = commentInfo.items;
+
     const views = nFormatter(data.items[0].statistics.viewCount);
     const likes = nFormatter(data.items[0].statistics.likeCount);
     //console.log(views,likes);
      detailScreen.innerHTML=
      ` <div id="video-player">
-     <div>
-         <img src="${pic}" width="100%">
+     <div id="img-cont">
+        
+         <iframe
+         id="youtube-player"
+         width="100%"
+         height="550"
+         src="https://www.youtube.com/embed/${videoId.videoId}"
+         frameborder="0"
+         allowfullscreen
+         
+     ></iframe>
      </div>
    </div>
    <div id="title">
@@ -130,7 +155,7 @@ async function getInfo(){
    
    <div id="comments">
                 <div id="head">
-                    <p>80 Comments</p>
+                    <p>${arr.length} Comments</p>
                     <div id="sort">
                         <span class="material-symbols-outlined">
                             sort
@@ -156,10 +181,8 @@ async function getInfo(){
    const container = document.createElement("div");
    container.id= "container-2";
    const comments = document.getElementById("comments");
-   let commentInfo = await getComments(videoId.videoId);
-   
-   
-   const arr = commentInfo.items;
+
+  
    
 
    for(let i=0; i<arr.length; i++)
@@ -202,11 +225,47 @@ async function getInfo(){
     container.appendChild(card);
     }
    comments.appendChild(container);
+
+
+  const moreVideodata = await getMoreVideos(title);
+  const sideScreen = document.getElementById("sideScreen");
+  
+  for(let i=0; i<moreVideodata.length; i++)
+  {
+      const card = document.createElement("div");
+      const img = moreVideodata[i].snippet.thumbnails.medium.url;
+      const title = moreVideodata[i].snippet.title;
+      const channelTitle = moreVideodata[i].snippet.channelTitle;
+      card.id = 'card'
+
+      card.innerHTML=
+      `<div id="imge">
+      <img src="${img}" width="200px">
+      <div id="time">
+          <p>23:45</p>
+      </div>
+  </div>
+  <div id="container2">
+      <p id="moreVideoTitle" style="font-size: 19px;"><b>${title}</b></p>
+      <p style="color: lightgray;">${channelTitle}</p>
+      <div>
+          <p>1M views</p>
+          <p>.</p>
+          <p>3 years ago</p>
+      </div>
+  </div>`
+
+   sideScreen.appendChild(card);
+  }
  }
 
 
 
 getInfo();
+
+
+
+
 
 function addRepliesToCard(arr,id)
 {    
@@ -318,3 +377,41 @@ function addRepliesToCard(arr,id)
 //         }
 //     }
 // ]
+
+
+
+
+// {
+//     "kind": "youtube#searchResult",
+//     "etag": "vWfIdEjyl5LYzRIta-u3lTsIj3g",
+//     "id": {
+//         "kind": "youtube#video",
+//         "videoId": "fjdHenFU2Tw"
+//     },
+//     "snippet": {
+//         "publishedAt": "2022-03-16T19:01:30Z",
+//         "channelId": "UCfx_nR5Dlg4s0qqzND5D16w",
+//         "title": "Take 1 apple and make this delicious recipe in less than 10 minutes!",
+//         "description": "MAKINGS: 1 apple 1 egg 2 tablespoons sugar 150 grams of sour cream Zest of 1 lemon 140 grams of wheat flour 1 teaspoon ...",
+//         "thumbnails": {
+//             "default": {
+//                 "url": "https://i.ytimg.com/vi/fjdHenFU2Tw/default.jpg",
+//                 "width": 120,
+//                 "height": 90
+//             },
+//             "medium": {
+//                 "url": "https://i.ytimg.com/vi/fjdHenFU2Tw/mqdefault.jpg",
+//                 "width": 320,
+//                 "height": 180
+//             },
+//             "high": {
+//                 "url": "https://i.ytimg.com/vi/fjdHenFU2Tw/hqdefault.jpg",
+//                 "width": 480,
+//                 "height": 360
+//             }
+//         },
+//         "channelTitle": "SuperYummy",
+//         "liveBroadcastContent": "none",
+//         "publishTime": "2022-03-16T19:01:30Z"
+//     }
+// }
