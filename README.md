@@ -1,7 +1,7 @@
 # YouTube_clone
 
 ## Deployed Link  
-`https://pritimunde1999.github.io/YouTube_clone/`
+https://pritimunde1999.github.io/YouTube_clone/
 
 
 ### Functionalities
